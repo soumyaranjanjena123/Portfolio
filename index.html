@@ -19,19 +19,19 @@
                 <img src="images/logo.png" class="logo">
                 <ul>
                     <li>
-                        <a href="#">Home</a>
+                        <a href="#Home">Home</a>
                     </li>
                     <li>
-                        <a href="#">About</a>
+                        <a href="#about">About</a>
                     </li>
                     <li>
-                        <a href="#">services</a>
+                        <a href="#serivices">services</a>
                     </li>
                     <li>
-                        <a href="#">Portfolio</a>
+                        <a href="#My_work">Portfolio</a>
                     </li>
                     <li>
-                        <a href="#">contact</a>
+                        <a href="#contact">contact</a>
                     </li>
                 </ul>
             </nav>
@@ -192,12 +192,13 @@
 
             <!-- form for contact -->
             <div class="contact-right">
-                <form>
+                <form name="submit-to-google-sheet">
                     <input type="text" name="name" placeholder="Your Name" required>
                     <input type="email" name="email" placeholder="Enter your mail" required>
                     <textarea name="Message" rows="6" placeholder="Your Message"></textarea>
                     <button type="submit" class="btn btn2">Submit</button>
                 </form>
+                <span id="msg"></span>
             </div>
         </div>
     </div>
@@ -205,6 +206,22 @@
         <p>copyright © Soumya. Made with by <i class="fa-solid fa-heart"></i></p>
     </div>
 </div>
-
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwT7BUu7P6H-TmwO0MwJZhOsWCBm27MRa_nOPnUFzvfN5aMQt9-gXR4AD43h3bzBXBX/exec'
+    const form = document.forms['submit-to-google-sheet']
+    const msg = document.getElementById("msg")
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => {msg.innerHTML = "Thank You"
+                setTimeout(function(){
+                    msg.innerHTML =""
+                },5000)
+                form.reset()
+            })
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
 </body>
 </html>

@@ -3,6 +3,9 @@
     padding: 0;
     font-family: 'Poppins', sans-serif;
 }
+html{
+    scroll-behavior: smooth;
+}
 body{
     background: #080808;
     color: white;
@@ -372,3 +375,9 @@ form btn2{
     color: #B959DC;
 }
 
+
+#msg{
+    color: #ff004f;
+    margin-top: -40px;
+    display: block;
+}
